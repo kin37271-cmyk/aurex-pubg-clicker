@@ -1,0 +1,15 @@
+﻿services:
+  - type: web
+    name: aurex-clicker-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        value: 8987574004:AAEcFYWsaj1Yt2-VRnts3IW0kK_ClMMZG4E
+      - key: WEBAPP_URL
+        value: https://aurex-clicker-bot.onrender.com
+      - key: PORT
+        value: 8080

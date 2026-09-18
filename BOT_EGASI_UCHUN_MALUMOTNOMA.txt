@@ -1,0 +1,84 @@
+﻿================================================================================
+           🎮 AUREX PUBG CLICKER BOT — EGASI UCHUN TO'LIQ MA'LUMOTNOMA 🎮
+================================================================================
+
+Hurmatli bot egasi! Ushbu hujjatda sizning Telegram botingiz, uning serveri,
+admin paneli va barcha muhim sozlamalari haqida to'liq ma'lumotlar jamlangan.
+
+--------------------------------------------------------------------------------
+1. 📌 ASOSIY BOT MA'LUMOTLARI
+--------------------------------------------------------------------------------
+• Bot Nomi:              AUREX PUBG Clicker
+• Bot Username:          @Aurex_Tekin_uc_bot
+• Bot Havolasi:          https://t.me/Aurex_Tekin_uc_bot
+• Bot Tokeni:            8987574004:AAEcFYWsaj1Yt2-VRnts3IW0kK_ClMMZG4E
+• Web App Havolasi:      https://aurex-clicker-bot.onrender.com
+
+--------------------------------------------------------------------------------
+2. 👑 EGA VA ADMINLAR (RUXSATLAR)
+--------------------------------------------------------------------------------
+• Bosh Ega (Owner ID):   8825408278  (Eng yuqori to'liq vakolat)
+• Admin ID:              8422157752  (To'liq boshqaruvchi admin)
+
+👉 Admin Panelga Kirish:
+Botga kirib (/start) bosilganda, adminlar uchun avtomatik ravishda
+pastki menyuda 👑 Admin Panel tugmasi chiqadi.
+
+--------------------------------------------------------------------------------
+3. 💰 AMALDAGI NARXLAR VA ALMASHUV KURSLARI
+--------------------------------------------------------------------------------
+💳 BANK KARTASIGA (Uzcard / Humo / Visa):
+• Kurs:                  10,000 Coin = 5,000 so'm (1 Coin = 0.5 so'm)
+• Minimal yechish:       10,000 Coin (5,000 so'm)
+
+🎮 PUBG MOBILE UC:
+• Kurs:                  15,000 Coin = 60 UC (1 UC = 250 Coin)
+• Minimal yechish:       8,000 Coin = 33 UC
+
+👥 DO'STLARNI TAKLIF QILISH (REFERAL):
+• Bonus:                 Har bir yangi do'st uchun +50 Coin
+
+⚡️ ENERGIYA VA CLICKER:
+• Standart energiya:     100 ta (har 1 soatda avtomatik to'liq tiklanadi)
+• Kuchaytirishlar:       Multitap, Max Limit, Tezkor Quvvat, Auto-Bot (Do'kon)
+
+--------------------------------------------------------------------------------
+4. 🌐 SERVER VA HOSTING (24/7 ISHLASH)
+--------------------------------------------------------------------------------
+• Hosting Xizmati:       Render.com (https://dashboard.render.com)
+• Servis Nomi:           aurex-clicker-bot
+• GitHub Repozitoriya:   https://github.com/kin37271-cmyk/aurex-pubg-clicker
+• 24/7 Tizimi:           Bot serverida Keep-Alive (avto-uyg'otuvchi) mavjud, 
+                         shuning uchun u uzluksiz 24/7 onlayn ishlaydi.
+
+--------------------------------------------------------------------------------
+5. 🛠 ADMIN PANELNING IMKONIYATLARI
+--------------------------------------------------------------------------------
+1. 👥 Foydalanuvchilar boshqaruvi:
+   - ID yoki username bo'yicha profilni ko'rish.
+   - Balansga tanga qo'shish yoki ayirish.
+   - Qoidabuzarlarni bloklash (ban) va blokdan chiqarish.
+2. 💳 Zayafkalar (Yechib olish so'rovlari):
+   - Foydalanuvchilar yuborgan Karta va PUBG zayafkalarini ko'rish.
+   - Tasdiqlash (foydalanuvchiga muvaffaqiyatli xabari boradi).
+   - Rad etish (sabab yoziladi va tangalar foydalanuvchiga qaytariladi).
+3. 📢 Xabar Tarqatish (Broadcast):
+   - Barcha foydalanuvchilarga bir zumda xabar, rasm yoki post yuborish.
+4. ⚙️ Narxlar va Sozlamalarni O'zgartirish:
+   - Kurslar, minimal yechish miqdorlari va referal bonuslarni to'g'ridan-to'g'ri
+     Telegram orqali o'zgartirish mumkin.
+5. 📢 Majburiy Obuna Kanallari:
+   - Yangi homiy kanal qo'shish yoki o'chirish.
+6. 📊 Statistika va Excel:
+   - Jami foydalanuvchilar soni, umumiy balanslar va to'langan pullar.
+   - Barcha ma'lumotlarni Excel (.xlsx) fayl qilib yuklab olish.
+
+--------------------------------------------------------------------------------
+6. 💻 KOMPYUTERDAGI NUSXA
+--------------------------------------------------------------------------------
+• Loyiha papkasi:        C:\Users\user\Desktop\clicker
+• Lokal ishga tushirish: C:\Users\user\Desktop\AUREX_CLICKER_24_7.bat
+
+================================================================================
+           Loyiha to'liq topshirildi. Muvaffaqiyatli foydalanish tilaymiz!
+================================================================================
