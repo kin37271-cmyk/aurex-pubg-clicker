@@ -19,7 +19,7 @@ WEBAPP_URL = os.getenv("WEBAPP_URL", "https://aurex-clicker-bot.onrender.com")
 # Standart sozlamalar (Oddiy mijozlar uchun)
 DEFAULT_MAX_ENERGY = 200             # Boshlang'ich 200 limit
 DEFAULT_ENERGY_REGEN_TIME = 3600    # 1 soat (soniyalarda)
-DEFAULT_COIN_PER_TAP = 2            # 1 bosishda 2 tanga (tez bosish)
+DEFAULT_COIN_PER_TAP = 3            # 1 bosishda 3 tanga (tez bosish)
 DEFAULT_REFERRAL_BONUS = 50         # Har bir do'st uchun tanga
 
 # Yechib olish standart sozlamalari

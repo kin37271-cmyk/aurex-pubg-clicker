@@ -26,7 +26,7 @@ async def init_db():
             total_earned REAL DEFAULT 0,
             energy INTEGER DEFAULT 200,
             max_energy INTEGER DEFAULT 200,
-            multitap_level INTEGER DEFAULT 2,
+            multitap_level INTEGER DEFAULT 3,
             energy_level INTEGER DEFAULT 1,
             regen_level INTEGER DEFAULT 1,
             autobot_level INTEGER DEFAULT 0,
