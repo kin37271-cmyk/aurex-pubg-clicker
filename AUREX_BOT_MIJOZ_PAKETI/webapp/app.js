@@ -7,8 +7,8 @@ let state = {
     username: "",
     fullName: "",
     balance: 0,
-    energy: 100,
-    maxEnergy: 100,
+    energy: 200,
+    maxEnergy: 200,
     multitap: 2,
     energyLevel: 1,
     regenLevel: 1,
@@ -670,7 +670,7 @@ async function loadAdminData() {
             document.getElementById("set-rate-uc").value = data.settings.coin_to_uc_rate || 60;
             document.getElementById("set-min-card").value = data.settings.card_min_withdraw || 10000;
             document.getElementById("set-min-pubg").value = data.settings.pubg_min_withdraw || 8000;
-            document.getElementById("set-init-limit").value = data.settings.initial_max_energy || 100;
+            document.getElementById("set-init-limit").value = data.settings.initial_max_energy || 200;
             document.getElementById("set-ref-bonus").value = data.settings.referral_bonus || 50;
             document.getElementById("set-zayafka-ch").value = data.settings.zayafka_channel_id || "";
         }
