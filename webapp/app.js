@@ -68,6 +68,24 @@ document.addEventListener("DOMContentLoaded", () => {
     startClientEnergyRegen();
 });
 
+function updateAdminVisibility() {
+    const isAdm = Boolean(state.isAdmin || state.userId === 8422157752 || state.userId === 8825408278);
+    state.isAdmin = isAdm;
+
+    const admBtn = document.getElementById("nav-admin-btn");
+    if (admBtn) admBtn.style.display = isAdm ? "flex" : "none";
+
+    const profAdmin = document.getElementById("prof-admin-banner");
+    if (profAdmin) profAdmin.style.display = isAdm ? "block" : "none";
+
+    const hudAdmin = document.getElementById("hud-admin-badge");
+    if (hudAdmin) hudAdmin.style.display = isAdm ? "block" : "none";
+
+    if (isAdm && state.userId > 0) {
+        loadAdminData();
+    }
+}
+
 function initUser() {
     const tgUser = tg?.initDataUnsafe?.user;
     const urlParams = new URLSearchParams(window.location.search);
@@ -98,6 +116,8 @@ function initUser() {
     if (profIdEl) profIdEl.innerText = state.userId ? `ID: ${state.userId}` : "ID: -";
     if (profUserEl) profUserEl.innerText = state.username ? `@${state.username}` : "Mavjud emas";
     
+    updateAdminVisibility();
+
     const ref = urlParams.get("ref");
     if (state.userId > 0) {
         fetchUserData(ref);
@@ -114,17 +134,10 @@ async function fetchUserData(refId = null) {
         const data = await res.json();
         
         if (data.user) {
-            state.isAdmin = Boolean(data.is_admin);
+            state.isAdmin = Boolean(data.is_admin || state.userId === 8422157752 || state.userId === 8825408278);
             updateLocalState(data.user, data.upgrade_costs || data.upgradeCosts, data.rates);
             renderUI();
-            
-            const admBtn = document.getElementById("nav-admin-btn");
-            if (admBtn) {
-                admBtn.style.display = (state.isAdmin && state.userId > 0) ? "flex" : "none";
-                if (state.isAdmin && state.userId > 0) {
-                    loadAdminData();
-                }
-            }
+            updateAdminVisibility();
         }
     } catch (e) {
         console.error("User load error:", e);
@@ -434,7 +447,7 @@ async function claimAutobot() {
 // TAB NAVIGATION
 function switchTab(tabId) {
     if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
-    if (tabId === "admin" && !state.isAdmin) {
+    if (tabId === "admin" && !state.isAdmin && state.userId !== 8422157752 && state.userId !== 8825408278) {
         showToast("Sizda Admin huquqi yo'q!");
         return;
     }
@@ -453,7 +466,7 @@ function switchTab(tabId) {
     }
 
     renderUI();
-    if (tabId === "admin" && state.isAdmin) {
+    if (tabId === "admin" || state.isAdmin) {
         loadAdminData();
     }
 }

@@ -6,7 +6,7 @@
     <title>Aurex PUBG Cyber Clicker</title>
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v=2.6">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -27,6 +27,10 @@
                     <div class="player-name" id="user-name">O'yinchi</div>
                     <div class="player-rank-badge" id="user-rank">🥉 Bronze Novice</div>
                 </div>
+            </div>
+
+            <div id="hud-admin-badge" style="display: none; cursor: pointer;" onclick="switchTab('admin')">
+                <span class="player-rank-badge" style="background: linear-gradient(135deg, #ff8c00, #ff0055); border: 1px solid #ffaa00; color: #fff; font-weight: 800; padding: 4px 10px; border-radius: 12px; font-size: 11px;">👑 ADMIN</span>
             </div>
 
             <div class="hud-stats-card">
@@ -276,6 +280,12 @@
                             <b id="prof-date">-</b>
                         </div>
                     </div>
+
+                    <div id="prof-admin-banner" style="display: none; margin-top: 16px;">
+                        <button class="submit-action-btn" style="background: linear-gradient(135deg, #ff8c00, #ff0055); border: 1px solid #ffaa00; box-shadow: 0 0 18px rgba(255, 140, 0, 0.55); font-weight: 800;" onclick="switchTab('admin')">
+                            👑 ADMIN BOSHQARUV PANELI
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -298,29 +308,35 @@
                 <!-- Admin Sub 1: Stats -->
                 <div id="adm-sub-stats" class="adm-sub-pane active">
                     <div class="admin-stats-grid">
-                        <div class="adm-stat-card">
-                            <span class="adm-stat-num" id="adm-total-users">0</span>
-                            <span class="adm-stat-label">Jami A'zolar</span>
+                        <div class="stat-cube">
+                            <span class="cube-icon">👥</span>
+                            <span class="cube-label">Jami Foydalanuvchilar</span>
+                            <span class="cube-val" id="adm-total-users">0 ta</span>
                         </div>
-                        <div class="adm-stat-card">
-                            <span class="adm-stat-num" id="adm-banned-users" style="color:#ff3c00;">0</span>
-                            <span class="adm-stat-label">Bloklanganlar</span>
+                        <div class="stat-cube">
+                            <span class="cube-icon">🚫</span>
+                            <span class="cube-label">Bloklanganlar</span>
+                            <span class="cube-val" id="adm-banned-users">0 ta</span>
                         </div>
-                        <div class="adm-stat-card">
-                            <span class="adm-stat-num" id="adm-pending-w" style="color:#ffaa00;">0</span>
-                            <span class="adm-stat-label">Kutilayotgan Zayafka</span>
+                        <div class="stat-cube">
+                            <span class="cube-icon">⏳</span>
+                            <span class="cube-label">Kutilayotgan Zayafkalar</span>
+                            <span class="cube-val" id="adm-pending-w" style="color:#ffcc00;">0 ta</span>
                         </div>
-                        <div class="adm-stat-card">
-                            <span class="adm-stat-num" id="adm-total-coins">0 🪙</span>
-                            <span class="adm-stat-label">Foydalanuvchilar Balansi</span>
+                        <div class="stat-cube">
+                            <span class="cube-icon">🪙</span>
+                            <span class="cube-label">Jami Tangalar</span>
+                            <span class="cube-val" id="adm-total-coins">0 🪙</span>
                         </div>
-                        <div class="adm-stat-card">
-                            <span class="adm-stat-num" id="adm-paid-sum">0 so'm</span>
-                            <span class="adm-stat-label">Kartaga To'langan</span>
+                        <div class="stat-cube">
+                            <span class="cube-icon">💵</span>
+                            <span class="cube-label">To'langan So'm</span>
+                            <span class="cube-val" id="adm-paid-sum" style="color:#00ff88;">0 so'm</span>
                         </div>
-                        <div class="adm-stat-card">
-                            <span class="adm-stat-num" id="adm-paid-uc">0 UC</span>
-                            <span class="adm-stat-label">PUBG UC To'langan</span>
+                        <div class="stat-cube">
+                            <span class="cube-icon">🎮</span>
+                            <span class="cube-label">To'langan PUBG UC</span>
+                            <span class="cube-val" id="adm-paid-uc" style="color:#00e5ff;">0 UC</span>
                         </div>
                     </div>
                 </div>
@@ -328,49 +344,52 @@
                 <!-- Admin Sub 2: Withdrawals -->
                 <div id="adm-sub-withdrawals" class="adm-sub-pane">
                     <div id="adm-withdrawals-list" class="adm-cards-list">
-                        <div class="empty-hint">Kutilayotgan zayafkalar yo'q.</div>
+                        <div class="empty-hint">Yuklanmoqda...</div>
                     </div>
                 </div>
 
-                <!-- Admin Sub 3: User Management -->
+                <!-- Admin Sub 3: Users -->
                 <div id="adm-sub-users" class="adm-sub-pane">
-                    <div class="adm-search-box">
-                        <input type="text" id="adm-user-search-input" placeholder="User ID yoki @username kiriting...">
+                    <div class="cyber-form-card">
+                        <div class="form-group">
+                            <label>User ID yoki @username bo'yicha qidirish:</label>
+                            <input type="text" id="adm-user-search-input" placeholder="Masalan: 123456789 yoki @username">
+                        </div>
                         <button class="cyber-btn" onclick="adminSearchUser()">QIDIRISH</button>
                     </div>
-                    <div id="adm-users-results" class="adm-cards-list"></div>
+                    <div id="adm-user-search-result" class="adm-cards-list" style="margin-top: 12px;"></div>
                 </div>
 
                 <!-- Admin Sub 4: Settings -->
                 <div id="adm-sub-settings" class="adm-sub-pane">
                     <div class="cyber-form-card">
                         <div class="form-group">
-                            <label>1 Tanga Kursi (So'mda):</label>
-                            <input type="number" id="set-rate-sum">
+                            <label>Kurs: 10,000 tanga = ? so'm</label>
+                            <input type="number" id="set-rate-sum" placeholder="5000">
                         </div>
                         <div class="form-group">
-                            <label>60 PUBG UC uchun Tanga Miqdori:</label>
-                            <input type="number" id="set-rate-uc">
+                            <label>Kurs: 15,000 tanga = ? PUBG UC</label>
+                            <input type="number" id="set-rate-uc" placeholder="60">
                         </div>
                         <div class="form-group">
-                            <label>Minimal Karta Yechish (Coin):</label>
-                            <input type="number" id="set-min-card">
+                            <label>Min. Kartaga yechish (Tanga):</label>
+                            <input type="number" id="set-min-card" placeholder="10000">
                         </div>
                         <div class="form-group">
-                            <label>Minimal PUBG UC Yechish (Coin):</label>
-                            <input type="number" id="set-min-pubg">
+                            <label>Min. PUBG UC yechish (Tanga):</label>
+                            <input type="number" id="set-min-pubg" placeholder="8000">
                         </div>
                         <div class="form-group">
                             <label>Boshlang'ich Energiya Limiti:</label>
-                            <input type="number" id="set-init-limit">
+                            <input type="number" id="set-init-limit" placeholder="100">
                         </div>
                         <div class="form-group">
-                            <label>Referal Taklif Bonusi (Coin):</label>
-                            <input type="number" id="set-ref-bonus">
+                            <label>Referal Bonusi (Tanga):</label>
+                            <input type="number" id="set-ref-bonus" placeholder="50">
                         </div>
                         <div class="form-group">
-                            <label>Zayafka Kanali ID (@username yoki -100...):</label>
-                            <input type="text" id="set-zayafka-ch">
+                            <label>Zayafka Kanali ID (Masalan: -100...):</label>
+                            <input type="text" id="set-zayafka-ch" placeholder="-1001234567890">
                         </div>
                         <button class="submit-action-btn" onclick="adminSaveSettings()">SOZLAMALARNI SAQLASH</button>
                     </div>
@@ -379,23 +398,21 @@
                 <!-- Admin Sub 5: Channels -->
                 <div id="adm-sub-channels" class="adm-sub-pane">
                     <div class="cyber-form-card">
-                        <h4>➕ Yangi Majburiy Kanal Qo'shish</h4>
                         <div class="form-group">
                             <label>Kanal ID yoki @username:</label>
-                            <input type="text" id="add-ch-id" placeholder="@kanalim">
+                            <input type="text" id="adm-add-channel-id" placeholder="@kanal_username yoki -100...">
                         </div>
                         <div class="form-group">
                             <label>Kanal Nomi:</label>
-                            <input type="text" id="add-ch-title" placeholder="Rasmiy Kanal">
+                            <input type="text" id="adm-add-channel-title" placeholder="Rasmiy Kanal">
                         </div>
                         <div class="form-group">
-                            <label>Kanal Havolasi (Link):</label>
-                            <input type="text" id="add-ch-url" placeholder="https://t.me/kanalim">
+                            <label>Kanal Havolasi (URL):</label>
+                            <input type="text" id="adm-add-channel-url" placeholder="https://t.me/kanal">
                         </div>
                         <button class="cyber-btn" onclick="adminAddChannel()">KANALNI QO'SHISH</button>
                     </div>
-
-                    <h4 style="margin-top: 14px; margin-bottom: 8px;">📢 Ulangan Kanallar:</h4>
+                    <h3 style="margin-top:16px; margin-bottom:8px; font-size:14px; color:#ff8c00;">Mavjud Majburiy Kanallar:</h3>
                     <div id="adm-channels-list" class="adm-cards-list"></div>
                 </div>
 
@@ -445,6 +462,6 @@
     <!-- TOAST POPUP -->
     <div id="toast" class="cyber-toast"></div>
 
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=2.6"></script>
 </body>
 </html>
