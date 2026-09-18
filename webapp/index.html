@@ -6,7 +6,7 @@
     <title>Aurex PUBG Cyber Clicker</title>
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="/static/style.css?v=2.6">
+    <link rel="stylesheet" href="/static/style.css?v=3.0">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div id="hud-admin-badge" style="display: none; cursor: pointer;" onclick="switchTab('admin')">
+            <div id="hud-admin-badge" style="cursor: pointer;" onclick="switchTab('admin')">
                 <span class="player-rank-badge" style="background: linear-gradient(135deg, #ff8c00, #ff0055); border: 1px solid #ffaa00; color: #fff; font-weight: 800; padding: 4px 10px; border-radius: 12px; font-size: 11px;">👑 ADMIN</span>
             </div>
 
@@ -451,8 +451,8 @@
                 <span class="nav-glyph">👤</span>
                 <span class="nav-text">Profil</span>
             </button>
-            <!-- Dynamic Admin Tab Button -->
-            <button class="nav-btn admin-nav-btn" id="nav-admin-btn" style="display: none;" onclick="switchTab('admin')">
+            <!-- Permanent Admin Tab Button -->
+            <button class="nav-btn admin-nav-btn" id="nav-admin-btn" onclick="switchTab('admin')">
                 <span class="nav-glyph">👑</span>
                 <span class="nav-text">Admin</span>
             </button>
@@ -462,6 +462,6 @@
     <!-- TOAST POPUP -->
     <div id="toast" class="cyber-toast"></div>
 
-    <script src="/static/app.js?v=2.6"></script>
+    <script src="/static/app.js?v=3.0"></script>
 </body>
 </html>

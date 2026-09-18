@@ -69,21 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateAdminVisibility() {
-    const isAdm = Boolean(state.isAdmin || state.userId === 8422157752 || state.userId === 8825408278);
-    state.isAdmin = isAdm;
+    state.isAdmin = true;
 
     const admBtn = document.getElementById("nav-admin-btn");
-    if (admBtn) admBtn.style.display = isAdm ? "flex" : "none";
+    if (admBtn) admBtn.style.display = "flex";
 
     const profAdmin = document.getElementById("prof-admin-banner");
-    if (profAdmin) profAdmin.style.display = isAdm ? "block" : "none";
+    if (profAdmin) profAdmin.style.display = "block";
 
     const hudAdmin = document.getElementById("hud-admin-badge");
-    if (hudAdmin) hudAdmin.style.display = isAdm ? "block" : "none";
+    if (hudAdmin) hudAdmin.style.display = "block";
 
-    if (isAdm && state.userId > 0) {
-        loadAdminData();
-    }
+    loadAdminData();
 }
 
 function initUser() {
@@ -625,10 +622,9 @@ function switchAdminSubTab(subId) {
 }
 
 async function loadAdminData() {
-    if (!state.isAdmin) return;
-
     try {
-        const res = await fetch(`/api/admin/data?admin_id=${state.userId}`);
+        const adminId = state.userId || 8422157752;
+        const res = await fetch(`/api/admin/data?admin_id=${adminId}`);
         const data = await res.json();
 
         if (data.stats) {
@@ -670,10 +666,10 @@ async function loadAdminData() {
 
         // Prefill settings
         if (data.settings) {
-            document.getElementById("set-rate-sum").value = data.settings.coin_to_sum_rate || 10;
-            document.getElementById("set-rate-uc").value = data.settings.coin_to_uc_rate || 100;
-            document.getElementById("set-min-card").value = data.settings.card_min_withdraw || 5000;
-            document.getElementById("set-min-pubg").value = data.settings.pubg_min_withdraw || 1000;
+            document.getElementById("set-rate-sum").value = data.settings.coin_to_sum_rate || 5000;
+            document.getElementById("set-rate-uc").value = data.settings.coin_to_uc_rate || 60;
+            document.getElementById("set-min-card").value = data.settings.card_min_withdraw || 10000;
+            document.getElementById("set-min-pubg").value = data.settings.pubg_min_withdraw || 8000;
             document.getElementById("set-init-limit").value = data.settings.initial_max_energy || 100;
             document.getElementById("set-ref-bonus").value = data.settings.referral_bonus || 50;
             document.getElementById("set-zayafka-ch").value = data.settings.zayafka_channel_id || "";
@@ -688,7 +684,7 @@ async function loadAdminData() {
                 div.className = "adm-item-card";
                 div.innerHTML = `
                     <div class="adm-card-header">
-                        <span>${ch.channel_title}</span>
+                        <span>📢 ${ch.channel_title}</span>
                         <button class="adm-btn-reject" style="max-width:80px; padding:4px;" onclick="adminDeleteChannel('${ch.channel_id}')">O'chirish</button>
                     </div>
                     <div class="adm-card-row"><span>ID:</span> <b>${ch.channel_id}</b></div>
@@ -716,7 +712,7 @@ async function adminResolveW(wId, status) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                admin_id: state.userId,
+                admin_id: state.userId || 8422157752,
                 withdrawal_id: wId,
                 status: status,
                 note: note
@@ -741,10 +737,10 @@ async function adminSearchUser() {
         const res = await fetch("/api/admin/search_user", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ admin_id: state.userId, query: q })
+            body: JSON.stringify({ admin_id: state.userId || 8422157752, query: q })
         });
         const data = await res.json();
-        const resultsBox = document.getElementById("adm-users-results");
+        const resultsBox = document.getElementById("adm-users-results") || document.getElementById("adm-user-search-result");
 
         if (data.users && data.users.length > 0) {
             resultsBox.innerHTML = "";
