@@ -482,7 +482,7 @@ async def resolve_withdrawal(w_id: int, status: str, admin_note: str = None):
 async def is_admin_user(user_id: int) -> bool:
     if not user_id or int(user_id) == 0:
         return False
-    if int(user_id) in (OWNER_ID, 8422157752) or int(user_id) in ADMINS:
+    if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
         return True
     async with aiosqlite.connect(DB_NAME) as db:
         async with db.execute("SELECT user_id FROM admins WHERE user_id = ?", (user_id,)) as cursor:
@@ -495,7 +495,7 @@ async def get_admin(user_id: int):
             row = await cursor.fetchone()
             if row:
                 return dict(row)
-            if int(user_id) in (OWNER_ID, 8422157752):
+            if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
                 return {
                     "user_id": int(user_id),
                     "username": "Admin" if int(user_id) == 8422157752 else "Aurex_Ega",
@@ -535,7 +535,7 @@ async def add_new_admin(user_id: int, username: str = None, full_name: str = Non
         return True
 
 async def delete_admin(user_id: int):
-    if int(user_id) in (OWNER_ID, 8422157752):
+    if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
         return False, "Asosiy Bosh Adminlarni o'chirib bo'lmaydi!"
     async with aiosqlite.connect(DB_NAME) as db:
         await db.execute("DELETE FROM admins WHERE user_id = ?", (user_id,))
@@ -566,7 +566,7 @@ async def toggle_admin_permission(user_id: int, permission_name: str):
         return new_val
 
 async def check_admin_permission(user_id: int, permission_name: str) -> bool:
-    if int(user_id) in (OWNER_ID, 8422157752):
+    if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
         return True
     admin = await get_admin(user_id)
     if not admin:

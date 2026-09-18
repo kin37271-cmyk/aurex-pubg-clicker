@@ -3,11 +3,11 @@ import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8987574004:AAEcFYWsaj1Yt2-VRnts3IW0kK_ClMMZG4E")
 
-# Asosiy Bosh Ega (Supreme Owner) - @Aurex_Ega
-OWNER_ID = 8825408278
+# Asosiy Bosh Ega (Supreme Owner)
+OWNER_ID = int(os.getenv("OWNER_ID", "8422157752"))
 
 # Asosiy Admin / Boshqaruvchi ID-lari
-ADMINS = [8825408278, 8422157752]
+ADMINS = [8422157752, 8825408278]
 
 DB_NAME = "clicker_bot.db"
 

