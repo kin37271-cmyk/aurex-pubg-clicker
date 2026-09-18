@@ -4,10 +4,10 @@ import os
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8987574004:AAEcFYWsaj1Yt2-VRnts3IW0kK_ClMMZG4E")
 
 # Asosiy Bosh Ega (Supreme Owner)
-OWNER_ID = int(os.getenv("OWNER_ID", "8422157752"))
+OWNER_ID = int(os.getenv("OWNER_ID", "8825408278"))
 
 # Asosiy Admin / Boshqaruvchi ID-lari
-ADMINS = [8422157752, 8825408278]
+ADMINS = [8825408278]
 
 DB_NAME = "clicker_bot.db"
 
@@ -19,7 +19,7 @@ WEBAPP_URL = os.getenv("WEBAPP_URL", "https://aurex-clicker-bot.onrender.com")
 # Standart sozlamalar (Oddiy mijozlar uchun)
 DEFAULT_MAX_ENERGY = 100             # Oddiy mijozlar uchun 100 limit
 DEFAULT_ENERGY_REGEN_TIME = 3600    # 1 soat (soniyalarda)
-DEFAULT_COIN_PER_TAP = 1            # 1 bosishda 1 tanga
+DEFAULT_COIN_PER_TAP = 2            # 1 bosishda 2 tanga (tez bosish)
 DEFAULT_REFERRAL_BONUS = 50         # Har bir do'st uchun tanga
 
 # Yechib olish standart sozlamalari

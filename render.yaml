@@ -10,7 +10,7 @@ services:
       - key: BOT_TOKEN
         value: 8987574004:AAEcFYWsaj1Yt2-VRnts3IW0kK_ClMMZG4E
       - key: OWNER_ID
-        value: "8422157752"
+        value: "8825408278"
       - key: WEBAPP_URL
         value: https://aurex-clicker-bot.onrender.com
       - key: PORT

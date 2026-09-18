@@ -26,7 +26,7 @@ async def init_db():
             total_earned REAL DEFAULT 0,
             energy INTEGER DEFAULT 100,
             max_energy INTEGER DEFAULT 100,
-            multitap_level INTEGER DEFAULT 1,
+            multitap_level INTEGER DEFAULT 2,
             energy_level INTEGER DEFAULT 1,
             regen_level INTEGER DEFAULT 1,
             autobot_level INTEGER DEFAULT 0,
@@ -117,12 +117,6 @@ async def init_db():
         await db.execute("""
         INSERT OR REPLACE INTO admins (user_id, username, full_name, role, can_manage_users, can_manage_withdrawals, can_change_settings, can_manage_channels, can_broadcast, can_manage_admins)
         VALUES (8825408278, 'Aurex_Ega', 'Aurex Egasi', 'owner', 1, 1, 1, 1, 1, 1)
-        """)
-
-        # Asosiy Admin / Boshqaruvchi (8422157752) - To'liq vakolat
-        await db.execute("""
-        INSERT OR REPLACE INTO admins (user_id, username, full_name, role, can_manage_users, can_manage_withdrawals, can_change_settings, can_manage_channels, can_broadcast, can_manage_admins)
-        VALUES (8422157752, 'Admin', 'Bosh Admin', 'owner', 1, 1, 1, 1, 1, 1)
         """)
 
         await db.commit()
@@ -482,7 +476,7 @@ async def resolve_withdrawal(w_id: int, status: str, admin_note: str = None):
 async def is_admin_user(user_id: int) -> bool:
     if not user_id or int(user_id) == 0:
         return False
-    if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
+    if int(user_id) in (OWNER_ID, 8825408278) or int(user_id) in ADMINS:
         return True
     async with aiosqlite.connect(DB_NAME) as db:
         async with db.execute("SELECT user_id FROM admins WHERE user_id = ?", (user_id,)) as cursor:
@@ -495,11 +489,11 @@ async def get_admin(user_id: int):
             row = await cursor.fetchone()
             if row:
                 return dict(row)
-            if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
+            if int(user_id) in (OWNER_ID, 8825408278) or int(user_id) in ADMINS:
                 return {
                     "user_id": int(user_id),
-                    "username": "Admin" if int(user_id) == 8422157752 else "Aurex_Ega",
-                    "full_name": "Bosh Admin (8422157752)" if int(user_id) == 8422157752 else "Aurex Egasi (Bosh Ega)",
+                    "username": "Aurex_Ega",
+                    "full_name": "Aurex Egasi (Bosh Ega)",
                     "role": "owner",
                     "can_manage_users": 1,
                     "can_manage_withdrawals": 1,
@@ -535,8 +529,8 @@ async def add_new_admin(user_id: int, username: str = None, full_name: str = Non
         return True
 
 async def delete_admin(user_id: int):
-    if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
-        return False, "Asosiy Bosh Adminlarni o'chirib bo'lmaydi!"
+    if int(user_id) in (OWNER_ID, 8825408278) or int(user_id) in ADMINS:
+        return False, "Asosiy Bosh Egani o'chirib bo'lmaydi!"
     async with aiosqlite.connect(DB_NAME) as db:
         await db.execute("DELETE FROM admins WHERE user_id = ?", (user_id,))
         await db.commit()
@@ -566,7 +560,7 @@ async def toggle_admin_permission(user_id: int, permission_name: str):
         return new_val
 
 async def check_admin_permission(user_id: int, permission_name: str) -> bool:
-    if int(user_id) in (OWNER_ID, 8422157752, 8825408278) or int(user_id) in ADMINS:
+    if int(user_id) in (OWNER_ID, 8825408278) or int(user_id) in ADMINS:
         return True
     admin = await get_admin(user_id)
     if not admin:

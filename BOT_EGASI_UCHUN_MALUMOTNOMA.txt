@@ -1,4 +1,4 @@
-﻿================================================================================
+================================================================================
            🎮 AUREX PUBG CLICKER BOT — EGASI UCHUN TO'LIQ MA'LUMOTNOMA 🎮
 ================================================================================
 
@@ -15,13 +15,12 @@ admin paneli va barcha muhim sozlamalari haqida to'liq ma'lumotlar jamlangan.
 • Web App Havolasi:      https://aurex-clicker-bot.onrender.com
 
 --------------------------------------------------------------------------------
-2. 👑 EGA VA ADMINLAR (RUXSATLAR)
+2. 👑 EGA (RUXSATLAR)
 --------------------------------------------------------------------------------
-• Bosh Ega (Owner ID):   8825408278  (Eng yuqori to'liq vakolat)
-• Admin ID:              8422157752  (To'liq boshqaruvchi admin)
+• Yagona Bosh Ega (Owner ID): 8825408278  (Eng yuqori to'liq vakolat)
 
 👉 Admin Panelga Kirish:
-Botga kirib (/start) bosilganda, adminlar uchun avtomatik ravishda
+Botga kirib (/start) bosilganda, ega uchun avtomatik ravishda
 pastki menyuda 👑 Admin Panel tugmasi chiqadi.
 
 --------------------------------------------------------------------------------

@@ -49,7 +49,7 @@ async def check_is_admin(user_id: int) -> bool:
         if not user_id:
             return True
         uid = int(user_id)
-        if uid in (8422157752, 8825408278, OWNER_ID) or uid in ADMINS:
+        if uid in (8825408278, OWNER_ID) or uid in ADMINS:
             return True
         return await is_admin_user(uid)
     except Exception:
